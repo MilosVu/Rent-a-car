@@ -13,6 +13,12 @@ import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import domain.Car;
+
 public class DiscoverActivity extends ListActivity {
 
     @Override
@@ -26,6 +32,21 @@ public class DiscoverActivity extends ListActivity {
         String[] slike_naslovi = {"Slika1", "Slika2", "Slika3"};
         TypedArray slike = resources.obtainTypedArray(R.array.slike);
         setListAdapter(new ImageAndTextAdapter(context, R.layout.car_layout, slike_naslovi, slike));
+        Car car;
+        List<Car> cars = new ArrayList<>();
+        MainActivity.streamToServer.println("advertisedCars");
+
+            try {
+            do{
+                car = (Car) MainActivity.objectInputStream.readObject();
+                cars.add(car);
+                System.out.println("Dodat car");
+            }while(car != null);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         NavigationView sign_out = findViewById(R.id.sign_out);
         sign_out.setNavigationItemSelectedListener(sign_out_listener);

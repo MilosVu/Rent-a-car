@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,11 +20,13 @@ import java.io.IOException;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private EditText usernameEditText;
-    private EditText passwordEditText;
-    private EditText confirmPasswordEditText;
-    private EditText emailEditText;
-    private String response;
+    EditText usernameEditText;
+    EditText passwordEditText;
+    EditText confirmPasswordEditText;
+    EditText emailEditText;
+    EditText firstNameEditText;
+    EditText lastNameEditText;
+    TextView errorSignUpTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,9 @@ public class SignupActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
         emailEditText = findViewById(R.id.emailEditText);
+        firstNameEditText = findViewById(R.id.firstNameEditText);
+        lastNameEditText = findViewById(R.id.lastNameEditText);
+        errorSignUpTextView = findViewById(R.id.errorSignUpTextView);
 
 //        Bundle extras = getIntent().getExtras();
 //        if (extras != null) {
@@ -47,6 +53,7 @@ public class SignupActivity extends AppCompatActivity {
 //            System.out.println(value);
 //        }
     }
+
 
     private NavigationView.OnNavigationItemSelectedListener listener = new NavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -62,26 +69,52 @@ public class SignupActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString();
         String confirmPassword = confirmPasswordEditText.getText().toString();
         String email = emailEditText.getText().toString();
+        String firstName = firstNameEditText.getText().toString();
+        String lastName = lastNameEditText.getText().toString();
 
-        if(!password.equals(confirmPassword)){
-            System.out.println("Passwords don't match");
+        if (username == null || username.isEmpty() || password == null || password.isEmpty() || confirmPassword == null || confirmPassword.isEmpty() ||
+                email == null || email.isEmpty() || firstName == null || firstName.isEmpty() || lastName == null || lastName.isEmpty())
             return;
-        }
 
-        if(email.indexOf('@') < 0 || email.indexOf('.') < 0){
-            System.out.println("Invalid email address");
-            return;
+        if (passwordConfirmed(password,confirmPassword) && isValidEmail(email)) {
+            User user = new User(username,password, firstName, lastName, email);
+            try {
+                registerUser(user);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+    }
 
-        User user = new User(username,password,"Somi","CAR",email);
-        try {
-            MainActivity.objectOutputStream.writeObject(user);
-            MainActivity.streamToServer.println("register");
-            response = MainActivity.streamFromServer.readLine();
-            System.out.println(response);
-        } catch (IOException e) {
-            e.printStackTrace();
+    private boolean registerUser(User user) throws IOException{
+        MainActivity.objectOutputStream.writeObject(user);
+        MainActivity.streamToServer.println("register");
+        String response = MainActivity.streamFromServer.readLine();
+
+        System.out.println(response);
+        errorSignUpTextView.setText(response);
+        if(response.equals("You have registered successfully")) {
+            errorSignUpTextView.setTextColor(Color.GREEN);
+            return true;
         }
+        return false;
+    }
+
+
+    private boolean isValidEmail(String email) {
+        if (email.indexOf('@') < 0 || email.indexOf('.') < 0) {
+            errorSignUpTextView.setText("Invalid email address.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean passwordConfirmed(String password, String confirmPassword) {
+        if (password.equals(confirmPassword)) {
+            return true;
+        }
+        errorSignUpTextView.setText("Passwords don't match.");
+        return false;
     }
 
 

@@ -7,6 +7,7 @@ import android.os.StrictMode;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             streamToServer = new PrintStream(outputStream);
             streamFromServer = new BufferedReader(new InputStreamReader(inputStream));
             objectOutputStream = new ObjectOutputStream((socketForCommunication.getOutputStream()));
+            objectInputStream = new ObjectInputStream((socketForCommunication.getInputStream()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -91,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
 //            objectOutputStream = new ObjectOutputStream((socketForCommunication.getOutputStream()));
             System.out.println("Connected");
             User user = new User(username,password,null,null,null);
-            System.out.println(user);
             objectOutputStream.writeObject(user);
 
             streamToServer.println("logIn");
@@ -102,6 +103,12 @@ public class MainActivity extends AppCompatActivity {
             if(response.equals("You have signed in")){
                 startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
 
+            }
+            else {
+                TextView errorTextView = findViewById(R.id.errorTextView);
+                errorTextView.setText("Wrong username/password.");
+                usernameEditText.setText("");
+                passwordEditText.setText("");
             }
 
         } catch (Exception e) {
