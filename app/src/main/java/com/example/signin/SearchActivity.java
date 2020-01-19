@@ -52,6 +52,11 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        BottomNavigationView bottom_navigation = findViewById(R.id.bottom_navigation);
+        bottom_navigation.setOnNavigationItemSelectedListener(bottom_navigation_listener);
+        NavigationView sign_out = findViewById(R.id.sign_out);
+        sign_out.setNavigationItemSelectedListener(sign_out_listener);
+
         dateFromTV = findViewById(R.id.dateFromTV);
         dateToTV = findViewById(R.id.dateToTV);
         brandSpinner = findViewById(R.id.brandSpinner);
@@ -162,12 +167,17 @@ public class SearchActivity extends AppCompatActivity {
         try {
             Date dateFrom = simpleDateFormat.parse(dateFromString);
             Date dateTo = simpleDateFormat.parse(dateToString);
+            System.out.println(dateFrom.toString());
+            System.out.println(dateTo.toString());
             if (dateTo.after(dateFrom)) {
                 Search search = new Search(brand,type,dateFrom,dateTo,minPrice,maxPrice);
-                MainActivity.objectOutputStream.writeObject(search);
-                MainActivity.streamToServer.println("search");
-                //salji objekat
-                //OTVORI NOVU STRANU S AUTOMOBILIMA - KAO I DISCOVER DA BUDE
+//                MainActivity.objectOutputStream.writeObject(search);
+ //               MainActivity.streamToServer.println("search");
+                //OTVORI NOVU STRANU S AUTOMOBILIMA - KAO I DISCOVER
+                String keyValue = "searchedCars";
+                Intent i = new Intent(SearchActivity.this, DiscoverActivity.class);
+                i.putExtra("key",keyValue);
+                startActivity(i);
             }
             else {
                 errorSearchTV.setText("Date-To must be after Date-From.");

@@ -24,37 +24,58 @@ import domain.Car;
 
 public class DiscoverActivity extends ListActivity {
 
+    String keyValue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discover);
 
-        Context context = getApplicationContext();
-        Resources resources = context.getResources();
+        //INICIJALIZUJEMO NIZ U KOJI CEMO UCITATI AUTOMOBILE OD SERVERA
+        //Car car;
+//        List<Car> cars = new ArrayList<>();
 
+        //UCITAVAMO KLJUC
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            keyValue = extras.getString("key");
+        }
 
-        Car car;
-        ArrayList<Car> cars = new ArrayList<>();
-        MainActivity.streamToServer.println("advertisedCars");
-            try {
-            do{
-                car = (Car) MainActivity.objectInputStream.readObject();
-                cars.add(car);
-                System.out.println("Dodat car");
-            }while(car != null);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        //AKO NISMO POSLALI KLJUC DA ZELIMO SEARCHED CARS, POKAZUJU SE ADVERTISED
+        if (keyValue == null) {
+            System.out.println("advertised cars");
+        //  MainActivity.streamToServer.println("advertisedCars");
+        }
 
+        //AKO SMO POSLALI KLJUC ZA SEARCHED CARS, ONI SE PRIKAZUJU
+        //U SUSTINI OVO SE BRISE
+        else if(keyValue != null && keyValue.equals("searchedCars")) {
+            System.out.println("searched cars");
+        }
 
-//        Car car1 = new Car(1,"b1","m1",1,"t1","tip1",111,"f1",4,null);
-//        Car car2 = new Car(1,"b2","m2",2,"t2","tip2",222,"f2",5,null);
-//        car1.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-fiat-grande-punto.jpg");
-//        car2.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-peugeot-107.jpg");
-//        cars.add(car1);
-//        cars.add(car2);
+        //NE ZNAM OTKUD OVO
+       // Context context = getApplicationContext();
+       // Resources resources = context.getResources();
+
+        //U SVAKOM SLUCAJU UCITAVAMO AUTOMOBILE U LISTU
+//            try {
+//            do{
+//                car = (Car) MainActivity.objectInputStream.readObject();
+//                cars.add(car);
+//                System.out.println("Dodat car");
+//            }while(car != null);
+//            } catch (ClassNotFoundException e) {
+//                e.printStackTrace();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
+        ArrayList<Car> cars = new ArrayList<Car>();
+        Car car1 = new Car(1,"b1","m1",1,"t1","tip1",111,"f1",4,null);
+        Car car2 = new Car(1,"b2","m2",2,"t2","tip2",222,"f2",5,null);
+        car1.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-fiat-grande-punto.jpg");
+        car2.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-peugeot-107.jpg");
+        cars.add(car1);
+        cars.add(car2);
 
         CarsAdapter adapter = new CarsAdapter(this,cars);
         ListView listView = findViewById(android.R.id.list);
@@ -82,6 +103,9 @@ public class DiscoverActivity extends ListActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch(item.getItemId()) {
+                        case R.id.nav_home:
+                            startActivity(new Intent(DiscoverActivity.this,DiscoverActivity.class));
+                            break;
                         case R.id.nav_search:
                             startActivity(new Intent(DiscoverActivity.this,SearchActivity.class));
                             break;
