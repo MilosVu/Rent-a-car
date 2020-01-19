@@ -7,6 +7,7 @@ import android.os.StrictMode;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             streamToServer = new PrintStream(outputStream);
             streamFromServer = new BufferedReader(new InputStreamReader(inputStream));
             objectOutputStream = new ObjectOutputStream((socketForCommunication.getOutputStream()));
+            objectInputStream = new ObjectInputStream((socketForCommunication.getInputStream()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -77,97 +79,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OpenDiscoverPage(View view) {
-        try {
-//            EditText usernameEditText = findViewById(R.id.usernameEditText);
-            String username = usernameEditText.getText().toString();
-//            EditText passwordEditText = findViewById(R.id.passwordEditText);
-            String password = passwordEditText.getText().toString();
-
-//            socketForCommunication = new Socket(SERVER_IP,SERVER_PORT);
-//            outputStream = socketForCommunication.getOutputStream();
-//            inputStream = socketForCommunication.getInputStream();
-//            streamToServer = new PrintStream(outputStream);
-//            streamFromServer = new BufferedReader(new InputStreamReader(inputStream));
-//            objectOutputStream = new ObjectOutputStream((socketForCommunication.getOutputStream()));
-            System.out.println("Connected");
-            User user = new User(username,password,null,null,null);
-            System.out.println(user);
-            objectOutputStream.writeObject(user);
-
-            streamToServer.println("logIn");
-            System.out.println("PROSAO");
-//            System.out.println("Poslao");
-            response = streamFromServer.readLine();
-            System.out.println(response );
-            if(response.equals("You have signed in")){
-                startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("PUKO");
-        }
+        startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
+//        try {
+////            EditText usernameEditText = findViewById(R.id.usernameEditText);
+//            String username = usernameEditText.getText().toString();
+////            EditText passwordEditText = findViewById(R.id.passwordEditText);
+//            String password = passwordEditText.getText().toString();
+//
+////            socketForCommunication = new Socket(SERVER_IP,SERVER_PORT);
+////            outputStream = socketForCommunication.getOutputStream();
+////            inputStream = socketForCommunication.getInputStream();
+////            streamToServer = new PrintStream(outputStream);
+////            streamFromServer = new BufferedReader(new InputStreamReader(inputStream));
+////            objectOutputStream = new ObjectOutputStream((socketForCommunication.getOutputStream()));
+//            System.out.println("Connected");
+//            User user = new User(username,password,null,null,null);
+//            objectOutputStream.writeObject(user);
+//
+//            streamToServer.println("logIn");
+//            System.out.println("PROSAO");
+////            System.out.println("Poslao");
+//            response = streamFromServer.readLine();
+//            System.out.println(response );
+//            if(response.equals("You have signed in")){
+//                startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
+//
+//            }
+//            else {
+//                TextView errorTextView = findViewById(R.id.errorTextView);
+//                errorTextView.setText("Wrong username/password.");
+//                usernameEditText.setText("");
+//                passwordEditText.setText("");
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("PUKO");
+//        }
 
     }
 
-//    public class Client implements Runnable{
-//
-//        @Override
-//        public void run() {
-//
-//        try {
-//            System.out.println("usao u run");
-//            socketForCommunication = new Socket(SERVER_IP, SERVERPORT);
-//            outputStream = socketForCommunication.getOutputStream();
-//            inputStream = socketForCommunication.getInputStream();
-//            streamToServer = new PrintStream(outputStream);
-//            streamFromServer = new BufferedReader(new InputStreamReader(inputStream));
-//            objectOutputStream = new ObjectOutputStream((socketForCommunication.getOutputStream()));
-//          //  service = new Service(socketForCommunication,streamFromServer,streamToServer,objectOutputStream,objectInputStream);
-//            System.out.println("Uspeo");
-//            streamToServer.println("cao servere");
-//
-//        } catch (UnknownHostException e1) {
-//            e1.printStackTrace();
-//        } catch (IOException e1) {
-//            e1.printStackTrace();
-//        }
-//
-//    }
-//    }
-
-//    class Client extends AsyncTask<Void, Void, Void> {
-//
-//        @Override
-//        protected Void doInBackground(Void... voids) {
-//            try{
-////                socketForCommunication = new Socket(SERVER_IP, SERVERPORT);
-////                outputStream = socketForCommunication.getOutputStream();
-////                inputStream = socketForCommunication.getInputStream();
-////                streamToServer = new PrintStream(outputStream);
-////                streamFromServer = new BufferedReader(new InputStreamReader(inputStream));
-////                objectOutputStream = new ObjectOutputStream((socketForCommunication.getOutputStream()));
-////                service = new Service(socketForCommunication, streamFromServer, streamToServer, objectOutputStream, objectInputStream);
-//
-////                EditText usernameEditText = findViewById(R.id.usernameEditText);
-////                String username = usernameEditText.getText().toString();
-////                EditText passwordEditText = findViewById(R.id.passwordEditText);
-////                String password = passwordEditText.getText().toString();
-////
-////                User user = new User(username,password,null,null,null);
-////                streamToServer.println(username);
-////                streamToServer.println(password);
-////                try {
-////                    objectOutputStream.writeObject(user);
-////                } catch (IOException e) {
-////                    e.printStackTrace();
-////                }
-//
-//            }catch (Exception e){
-//                System.out.println(e.getMessage());
-//            }
-//            return null;
-//        }
-//    }
 }

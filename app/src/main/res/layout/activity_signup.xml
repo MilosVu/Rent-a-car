@@ -13,36 +13,57 @@
         android:scaleType="centerCrop"
         android:src="@drawable/background_image_one_signup" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/appNameTextView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:layout_marginTop="100dp"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:text="APP NAME"-->
-<!--        android:textColor="@android:color/white"-->
-<!--        android:textSize="30sp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.151"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/go_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemBackground="@android:color/white"
         app:menu="@menu/go_back_layout" />
 
 
     <LinearLayout
-        android:layout_width="401dp"
-        android:layout_height="400dp"
-        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_below="@id/go_back">
+
+        <EditText
+            android:id="@+id/firstNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="First name"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" />
+        <EditText
+            android:id="@+id/lastNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="Last name"
+            android:inputType="text"
+            android:padding="15dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" />
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" />
 
         <EditText
             android:id="@+id/usernameEditText"
@@ -57,13 +78,6 @@
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="30dp"
-            android:background="#B1B1B1" />
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -91,34 +105,6 @@
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="30dp"
-            android:background="#B1B1B1" />
-
-        <EditText
-            android:id="@+id/emailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:backgroundTint="@android:color/transparent"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:padding="15dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="30dp"
-            android:background="#B1B1B1" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -154,7 +140,13 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
         </RelativeLayout>
-
+        <TextView
+            android:id="@+id/errorSignUpTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:padding="15dp"
+            android:textColor="@android:color/holo_red_dark" />
 
     </LinearLayout>
 </RelativeLayout>
