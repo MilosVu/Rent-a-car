@@ -72,8 +72,7 @@ public class SignupActivity extends AppCompatActivity {
         String firstName = firstNameEditText.getText().toString();
         String lastName = lastNameEditText.getText().toString();
 
-        if (username == null || username.isEmpty() || password == null || password.isEmpty() || confirmPassword == null || confirmPassword.isEmpty() ||
-                email == null || email.isEmpty() || firstName == null || firstName.isEmpty() || lastName == null || lastName.isEmpty())
+        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty() || firstName.isEmpty()  || lastName.isEmpty())
             return;
 
         if (passwordConfirmed(password,confirmPassword) && isValidEmail(email)) {
