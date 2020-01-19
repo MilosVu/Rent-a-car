@@ -80,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void OpenDiscoverPage(View view) {
         startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
+//        String keyValue = "advertisedCars";
+//        Intent i = new Intent(MainActivity.this, DiscoverActivity.class);
+//        i.putExtra("key",keyValue);
+//        startActivity(i);
 //        try {
 ////            EditText usernameEditText = findViewById(R.id.usernameEditText);
 //            String username = usernameEditText.getText().toString();

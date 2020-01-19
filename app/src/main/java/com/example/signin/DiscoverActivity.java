@@ -24,18 +24,39 @@ import domain.Car;
 
 public class DiscoverActivity extends ListActivity {
 
+    String keyValue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discover);
 
+        //INICIJALIZUJEMO NIZ U KOJI CEMO UCITATI AUTOMOBILE OD SERVERA
+        //Car car;
+//        List<Car> cars = new ArrayList<>();
+
+        //UCITAVAMO KLJUC
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            keyValue = extras.getString("key");
+        }
+
+        //AKO NISMO POSLALI KLJUC DA ZELIMO SEARCHED CARS, POKAZUJU SE ADVERTISED
+        if (keyValue == null) {
+            System.out.println("advertised cars");
+        //  MainActivity.streamToServer.println("advertisedCars");
+        }
+
+        //AKO SMO POSLALI KLJUC ZA SEARCHED CARS, ONI SE PRIKAZUJU
+        //U SUSTINI OVO SE BRISE
+        else if(keyValue != null && keyValue.equals("searchedCars")) {
+            System.out.println("searched cars");
+        }
+
+        //NE ZNAM OTKUD OVO
        // Context context = getApplicationContext();
        // Resources resources = context.getResources();
 
-
-//        Car car;
-//        List<Car> cars = new ArrayList<>();
-//        MainActivity.streamToServer.println("advertisedCars");
+        //U SVAKOM SLUCAJU UCITAVAMO AUTOMOBILE U LISTU
 //            try {
 //            do{
 //                car = (Car) MainActivity.objectInputStream.readObject();
@@ -82,6 +103,9 @@ public class DiscoverActivity extends ListActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch(item.getItemId()) {
+                        case R.id.nav_home:
+                            startActivity(new Intent(DiscoverActivity.this,DiscoverActivity.class));
+                            break;
                         case R.id.nav_search:
                             startActivity(new Intent(DiscoverActivity.this,SearchActivity.class));
                             break;
