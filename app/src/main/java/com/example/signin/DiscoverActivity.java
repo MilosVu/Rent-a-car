@@ -29,32 +29,32 @@ public class DiscoverActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discover);
 
-       // Context context = getApplicationContext();
-       // Resources resources = context.getResources();
+        Context context = getApplicationContext();
+        Resources resources = context.getResources();
 
 
-//        Car car;
-//        List<Car> cars = new ArrayList<>();
-//        MainActivity.streamToServer.println("advertisedCars");
-//            try {
-//            do{
-//                car = (Car) MainActivity.objectInputStream.readObject();
-//                cars.add(car);
-//                System.out.println("Dodat car");
-//            }while(car != null);
-//            } catch (ClassNotFoundException e) {
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+        Car car;
+        ArrayList<Car> cars = new ArrayList<>();
+        MainActivity.streamToServer.println("advertisedCars");
+            try {
+            do{
+                car = (Car) MainActivity.objectInputStream.readObject();
+                cars.add(car);
+                System.out.println("Dodat car");
+            }while(car != null);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        ArrayList<Car> cars = new ArrayList<Car>();
-        Car car1 = new Car(1,"b1","m1",1,"t1","tip1",111,"f1",4,null);
-        Car car2 = new Car(1,"b2","m2",2,"t2","tip2",222,"f2",5,null);
-        car1.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-fiat-grande-punto.jpg");
-        car2.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-peugeot-107.jpg");
-        cars.add(car1);
-        cars.add(car2);
+
+//        Car car1 = new Car(1,"b1","m1",1,"t1","tip1",111,"f1",4,null);
+//        Car car2 = new Car(1,"b2","m2",2,"t2","tip2",222,"f2",5,null);
+//        car1.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-fiat-grande-punto.jpg");
+//        car2.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-peugeot-107.jpg");
+//        cars.add(car1);
+//        cars.add(car2);
 
         CarsAdapter adapter = new CarsAdapter(this,cars);
         ListView listView = findViewById(android.R.id.list);

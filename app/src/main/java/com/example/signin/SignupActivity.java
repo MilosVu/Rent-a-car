@@ -47,11 +47,6 @@ public class SignupActivity extends AppCompatActivity {
         lastNameEditText = findViewById(R.id.lastNameEditText);
         errorSignUpTextView = findViewById(R.id.errorSignUpTextView);
 
-//        Bundle extras = getIntent().getExtras();
-//        if (extras != null) {
-//            String value = extras.getString("key");
-//            System.out.println(value);
-//        }
     }
 
 

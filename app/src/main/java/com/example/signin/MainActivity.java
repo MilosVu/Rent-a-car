@@ -60,62 +60,45 @@ public class MainActivity extends AppCompatActivity {
             streamFromServer = new BufferedReader(new InputStreamReader(inputStream));
             objectOutputStream = new ObjectOutputStream((socketForCommunication.getOutputStream()));
             objectInputStream = new ObjectInputStream((socketForCommunication.getInputStream()));
+            System.out.println("Connected");
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        new Thread(new Client()).start();
-//
-//        System.out.println("prosao tread");
 
     }
 
     public void OpenSignupPage(View view) {
         startActivity(new Intent(MainActivity.this,SignupActivity.class));
-//        String value = "hello";
-//        Intent i = new Intent(MainActivity.this, SignupActivity.class);
-//        i.putExtra("key",value);
-//        startActivity(i);
-
     }
 
     public void OpenDiscoverPage(View view) {
         startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
-//        try {
-////            EditText usernameEditText = findViewById(R.id.usernameEditText);
-//            String username = usernameEditText.getText().toString();
-////            EditText passwordEditText = findViewById(R.id.passwordEditText);
-//            String password = passwordEditText.getText().toString();
-//
-////            socketForCommunication = new Socket(SERVER_IP,SERVER_PORT);
-////            outputStream = socketForCommunication.getOutputStream();
-////            inputStream = socketForCommunication.getInputStream();
-////            streamToServer = new PrintStream(outputStream);
-////            streamFromServer = new BufferedReader(new InputStreamReader(inputStream));
-////            objectOutputStream = new ObjectOutputStream((socketForCommunication.getOutputStream()));
-//            System.out.println("Connected");
-//            User user = new User(username,password,null,null,null);
-//            objectOutputStream.writeObject(user);
-//
-//            streamToServer.println("logIn");
-//            System.out.println("PROSAO");
-////            System.out.println("Poslao");
-//            response = streamFromServer.readLine();
-//            System.out.println(response );
-//            if(response.equals("You have signed in")){
-//                startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
-//
-//            }
-//            else {
-//                TextView errorTextView = findViewById(R.id.errorTextView);
-//                errorTextView.setText("Wrong username/password.");
-//                usernameEditText.setText("");
-//                passwordEditText.setText("");
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            System.out.println("PUKO");
-//        }
+        try {
+            String username = usernameEditText.getText().toString();
+            String password = passwordEditText.getText().toString();
+
+            User user = new User(username,password,null,null,null);
+            objectOutputStream.writeObject(user);
+
+            streamToServer.println("logIn");
+            System.out.println("PROSAO");
+            response = streamFromServer.readLine();
+            System.out.println(response );
+            if(response.equals("You have signed in")){
+                startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
+
+            }
+            else {
+                TextView errorTextView = findViewById(R.id.errorTextView);
+                errorTextView.setText("Wrong username/password.");
+                usernameEditText.setText("");
+                passwordEditText.setText("");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("FATAL ERROR");
+        }
 
     }
 
