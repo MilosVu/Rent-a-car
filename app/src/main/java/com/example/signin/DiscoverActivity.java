@@ -31,8 +31,8 @@ public class DiscoverActivity extends ListActivity {
         setContentView(R.layout.activity_discover);
 
         //INICIJALIZUJEMO NIZ U KOJI CEMO UCITATI AUTOMOBILE OD SERVERA
-        //Car car;
-//        List<Car> cars = new ArrayList<>();
+        Car car;
+        ArrayList<Car> cars = new ArrayList<>();
 
         //UCITAVAMO KLJUC
         Bundle extras = getIntent().getExtras();
@@ -43,7 +43,7 @@ public class DiscoverActivity extends ListActivity {
         //AKO NISMO POSLALI KLJUC DA ZELIMO SEARCHED CARS, POKAZUJU SE ADVERTISED
         if (keyValue == null) {
             System.out.println("advertised cars");
-        //  MainActivity.streamToServer.println("advertisedCars");
+            MainActivity.streamToServer.println("advertisedCars");
         }
 
         //AKO SMO POSLALI KLJUC ZA SEARCHED CARS, ONI SE PRIKAZUJU
@@ -57,18 +57,13 @@ public class DiscoverActivity extends ListActivity {
        // Resources resources = context.getResources();
 
         //U SVAKOM SLUCAJU UCITAVAMO AUTOMOBILE U LISTU
-        Context context = getApplicationContext();
-        Resources resources = context.getResources();
 
-
-        Car car;
-        ArrayList<Car> cars = new ArrayList<>();
-        MainActivity.streamToServer.println("advertisedCars");
+//        MainActivity.streamToServer.println("advertisedCars");
         try {
             do{
                 car = (Car) MainActivity.objectInputStream.readObject();
-                cars.add(car);
-                System.out.println("Dodat car");
+                if(car != null)
+                    cars.add(car);
             }while(car != null);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

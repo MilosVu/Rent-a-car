@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(response );
             if(response.equals("You have signed in")){
                 startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
-
             }
             else {
                 TextView errorTextView = findViewById(R.id.errorTextView);

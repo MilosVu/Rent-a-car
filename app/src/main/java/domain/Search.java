@@ -11,7 +11,7 @@ public class Search implements Serializable {
     private int minPrice;
     private int maxPrice;
 
-//    public static final long serialVersionUID =3L;
+    public static final long serialVersionUID =3L;
 
 
     public Search(String brand, String type, Date dateFrom, Date dateTo, int minPrice, int maxPrice) {
