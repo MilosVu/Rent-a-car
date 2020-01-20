@@ -33,8 +33,8 @@ public class DiscoverActivity extends ListActivity {
         setContentView(R.layout.activity_discover);
 
         //INICIJALIZUJEMO NIZ U KOJI CEMO UCITATI AUTOMOBILE OD SERVERA
-        //Car car;
-//        List<Car> cars = new ArrayList<>();
+        Car car;
+        ArrayList<Car> cars = new ArrayList<>();
 
         //UCITAVAMO KLJUC
         Bundle extras = getIntent().getExtras();
@@ -45,7 +45,7 @@ public class DiscoverActivity extends ListActivity {
         //AKO NISMO POSLALI KLJUC DA ZELIMO SEARCHED CARS, POKAZUJU SE ADVERTISED
         if (keyValue == null) {
             System.out.println("advertised cars");
-        //  MainActivity.streamToServer.println("advertisedCars");
+            MainActivity.streamToServer.println("advertisedCars");
         }
 
         //AKO SMO POSLALI KLJUC ZA SEARCHED CARS, ONI SE PRIKAZUJU
@@ -55,21 +55,18 @@ public class DiscoverActivity extends ListActivity {
         }
 
         //NE ZNAM OTKUD OVO
-       // Context context = getApplicationContext();
-       // Resources resources = context.getResources();
-
-        //U SVAKOM SLUCAJU UCITAVAMO AUTOMOBILE U LISTU
         Context context = getApplicationContext();
         Resources resources = context.getResources();
 
+        //U SVAKOM SLUCAJU UCITAVAMO AUTOMOBILE U LISTU
 
-        ArrayList<Car> cars = new ArrayList<Car>();
-        Car car1 = new Car(1,"b1","m1",1,"t1","tip1",111,"f1",4,null);
-        Car car2 = new Car(1,"b2","m2",2,"t2","tip2",222,"f2",5,null);
-        car1.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-fiat-grande-punto.jpg");
-        car2.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-peugeot-107.jpg");
-        cars.add(car1);
-        cars.add(car2);
+//        ArrayList<Car> cars = new ArrayList<Car>();
+//        Car car1 = new Car(1,"b1","m1",1,"t1","tip1",111,"f1",4,null);
+//        Car car2 = new Car(1,"b2","m2",2,"t2","tip2",222,"f2",5,null);
+//        car1.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-fiat-grande-punto.jpg");
+//        car2.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-peugeot-107.jpg");
+//        cars.add(car1);
+//        cars.add(car2);
 
 //        Car car;
 //        ArrayList<Car> cars = new ArrayList<>();
@@ -85,6 +82,18 @@ public class DiscoverActivity extends ListActivity {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+//        MainActivity.streamToServer.println("advertisedCars");
+        try {
+            do{
+                car = (Car) MainActivity.objectInputStream.readObject();
+                if(car != null)
+                    cars.add(car);
+            }while(car != null);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         CarsAdapter adapter = new CarsAdapter(this,cars);

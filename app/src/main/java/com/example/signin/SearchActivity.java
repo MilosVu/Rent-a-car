@@ -69,10 +69,23 @@ public class SearchActivity extends AppCompatActivity {
         //UCITAVANJE U SPINNERE
         ArrayList<String> brands = new ArrayList<String>();
         ArrayList<String> types = new ArrayList<String>();
-        brands.add("brand1");
-        brands.add("brand2");
-        types.add("type1");
-        types.add("type2");
+
+        brands.add("BMW");
+        brands.add("Mercedes");
+        brands.add("Skoda");
+        brands.add("Bentley");
+        brands.add("Rolls - Royce");
+        brands.add("Volkswagen");
+        brands.add("Renault");
+        brands.add("Audi");
+        brands.add("Nissan");
+        brands.add("Opel");
+
+        types.add("SUV");
+        types.add("Saloon");
+        types.add("Cabrio");
+        types.add("Coupe");
+        types.add("Minivan");
         //       List<Car> cars = new ArrayList<>();
         //OVDE ZAHTEV ZA SVE AUTOMOBILE A NE SAMO ADVERTISED
 //        MainActivity.streamToServer.println("advertisedCars");
@@ -198,13 +211,13 @@ public class SearchActivity extends AppCompatActivity {
             System.out.println(dateTo.toString());
             if (validDates(dateFrom,dateTo)) {
                 Search search = new Search(brand,type,dateFrom,dateTo,minPrice,maxPrice);
+                MainActivity.streamToServer.println("search");
 //                MainActivity.objectOutputStream.writeObject(search);
- //               MainActivity.streamToServer.println("search");
                 //OTVORI NOVU STRANU S AUTOMOBILIMA - KAO I DISCOVER
-                String keyValue = "searchedCars";
-                Intent i = new Intent(SearchActivity.this, DiscoverActivity.class);
-                i.putExtra("key",keyValue);
-                startActivity(i);
+//                String keyValue = "searchedCars";
+//                Intent i = new Intent(SearchActivity.this, DiscoverActivity.class);
+//                i.putExtra("key",keyValue);
+//                startActivity(i);
             }
             else {
                 errorSearchTV.setText("Invalid dates");
