@@ -212,12 +212,12 @@ public class SearchActivity extends AppCompatActivity {
             if (validDates(dateFrom,dateTo)) {
                 Search search = new Search(brand,type,dateFrom,dateTo,minPrice,maxPrice);
                 MainActivity.streamToServer.println("search");
-//                MainActivity.objectOutputStream.writeObject(search);
+                MainActivity.objectOutputStream.writeObject(search);
                 //OTVORI NOVU STRANU S AUTOMOBILIMA - KAO I DISCOVER
-//                String keyValue = "searchedCars";
-//                Intent i = new Intent(SearchActivity.this, DiscoverActivity.class);
-//                i.putExtra("key",keyValue);
-//                startActivity(i);
+                String keyValue = "searchedCars";
+                Intent i = new Intent(SearchActivity.this, DiscoverActivity.class);
+                i.putExtra("key",keyValue);
+                startActivity(i);
             }
             else {
                 errorSearchTV.setText("Invalid dates");

@@ -141,25 +141,6 @@ public class ReservationActivity extends AppCompatActivity {
 
     }
 
-//    private void setTotalPrice() {
-//        String dateFromString = dateFromTV.getText().toString();
-//        String dateToString = dateToTV.getText().toString();
-//        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("mm/dd/yyyy");
-//        try {
-//            Date dateFrom = simpleDateFormat.parse(dateFromString);
-//            Date dateTo = simpleDateFormat.parse(dateToString);
-//            if (dateTo.after(dateFrom)) {
-//                int totalPrice = calculatePrice(dateFrom,dateTo);
-//                totalPriceTV.setText(totalPrice+" $");
-//            }
-//            else {
-//                errorReservationTV.setText("Date-To must be after Date-From.");
-//                return;
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private void setTotalPrice() {
         try {
@@ -205,18 +186,18 @@ public class ReservationActivity extends AppCompatActivity {
     public void Reserve(View view){
         if (validDates(dateFrom, dateTo)) {
             //SALJI RESERVATION OBJEKAT
-//            try {
-//                Reservation reservation = new Reservation(MainActivity.user.getUsername(), car.getCarID(), dateFrom, dateTo, totalPrice);
-//                MainActivity.streamToServer.println("reserve");
-//                MainActivity.objectOutputStream.writeObject(reservation);
-//                String response = MainActivity.streamFromServer.readLine();
-//                errorReservationTV.setText(response);
-//                if (response.equals("Reservation accepted")) {
-//                    errorReservationTV.setTextColor(Color.GREEN);
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                Reservation reservation = new Reservation(MainActivity.user.getUsername(), car.getCarID(), dateFrom, dateTo, totalPrice);
+                MainActivity.streamToServer.println("reserve");
+                MainActivity.objectOutputStream.writeObject(reservation);
+                String response = MainActivity.streamFromServer.readLine();
+                errorReservationTV.setText(response);
+                if (response.equals("Reservation accepted")) {
+                    errorReservationTV.setTextColor(Color.GREEN);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             //ispisi poruku da li je uspesno, da li je zauzet auto
             // TESTIRANJE:
