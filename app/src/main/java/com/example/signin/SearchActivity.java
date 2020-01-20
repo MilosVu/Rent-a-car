@@ -38,7 +38,8 @@ public class SearchActivity extends AppCompatActivity {
 
     private TextView dateFromTV;
     private TextView dateToTV;
-    private DatePickerDialog.OnDateSetListener dateSetListener;
+    private DatePickerDialog.OnDateSetListener dateFromSetListener;
+    private DatePickerDialog.OnDateSetListener dateToSetListener;
 
 
     Spinner brandSpinner;
@@ -91,19 +92,14 @@ public class SearchActivity extends AppCompatActivity {
 //            String brand = c.getBrand();
 //            String type = c.getType();
 //            brands.add(brand);
-//            models.add(model);
 //            types.add(type);
 //        }
 
         brandSpinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_item, brands));
         typeSpinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_item, types));
 
-        setDate(dateFromTV);
-        setDate(dateToTV);
-    }
-
-    private void setDate(final TextView dateTV) {
-        dateTV.setOnClickListener(new View.OnClickListener() {
+        //SPAKOVACEMO OVAJ KOD ZA DATUME JEDNOG DANA U KRACI
+        dateFromTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar cal = Calendar.getInstance();
@@ -114,24 +110,55 @@ public class SearchActivity extends AppCompatActivity {
                 DatePickerDialog dialog = new DatePickerDialog(
                         SearchActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        dateSetListener,
+                        dateFromSetListener,
                         year,month,day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
 
-        dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        dateFromSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
                 Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
 
                 String date = month + "/" + day + "/" + year;
-                dateTV.setText(date);
+                dateFromTV.setText(date);
+            }
+        };
+
+        dateToTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        SearchActivity.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        dateToSetListener,
+                        year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        dateToSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+
+                String date = month + "/" + day + "/" + year;
+                dateToTV.setText(date);
             }
         };
     }
+
+
 
     public void Search(View view){
         String brand = brandSpinner.getSelectedItem().toString();
@@ -169,7 +196,7 @@ public class SearchActivity extends AppCompatActivity {
             Date dateTo = simpleDateFormat.parse(dateToString);
             System.out.println(dateFrom.toString());
             System.out.println(dateTo.toString());
-            if (dateTo.after(dateFrom)) {
+            if (validDates(dateFrom,dateTo)) {
                 Search search = new Search(brand,type,dateFrom,dateTo,minPrice,maxPrice);
 //                MainActivity.objectOutputStream.writeObject(search);
  //               MainActivity.streamToServer.println("search");
@@ -180,12 +207,17 @@ public class SearchActivity extends AppCompatActivity {
                 startActivity(i);
             }
             else {
-                errorSearchTV.setText("Date-To must be after Date-From.");
+                errorSearchTV.setText("Invalid dates");
                 return;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private boolean validDates(Date dateFrom, Date dateTo) {
+        if (dateFrom == null || dateTo == null || dateFrom.before(new Date()) || dateTo.before(new Date()) || dateFrom.after(dateTo))
+            return false;
+        return true;
     }
 
     public NavigationView.OnNavigationItemSelectedListener sign_out_listener =

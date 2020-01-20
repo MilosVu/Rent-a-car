@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/sign_out"
         android:layout_width="match_parent"
@@ -14,74 +13,42 @@
         />
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:layout_above="@id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@id/sign_out"
-        android:layout_marginTop="10sp"
-        android:layout_marginBottom="10sp"
-        android:padding="20sp">
+        android:padding="10sp">
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp">
 
+            <ListView
+                android:id="@android:id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ListView>
+        </FrameLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10sp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="10sp"
-                android:text="Brand"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
-                android:layout_marginRight="10sp"
-                />
-            <Spinner
-                android:id="@+id/brandSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"  />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10sp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="10sp"
-                android:text="Type"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
-                android:layout_marginRight="10sp"
-                />
-            <Spinner
-                android:id="@+id/typeSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"  />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10sp">
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
                 android:text="From"
-                android:textColor="@android:color/black"
                 android:textSize="15sp"
                 android:layout_marginRight="5sp"
                 />
             <TextView
-                android:id="@+id/dateFromTV"
+                android:id="@+id/resDateFromTV"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
                 android:text="1/1/2020"
-                android:textColor="@android:color/black"
                 android:textSize="15sp"
                 android:layout_marginRight="5sp"
                 />
@@ -90,67 +57,58 @@
                 android:layout_height="match_parent"
                 android:padding="10sp"
                 android:text="To"
-                android:textColor="@android:color/black"
                 android:textSize="15sp"
                 android:layout_marginRight="5sp"
                 />
             <TextView
-                android:id="@+id/dateToTV"
+                android:id="@+id/resDateToTV"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
                 android:text="1/1/2020"
-                android:textColor="@android:color/black"
                 android:textSize="15sp"
                 />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10sp">
+            android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
-                android:text="Price range"
-                android:textColor="@android:color/black"
+                android:text="TOTAL PRICE: "
                 android:textSize="15sp"
-                android:layout_marginRight="10sp"
+                android:layout_marginRight="5sp"
                 />
-            <EditText
-                android:layout_width="100sp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginRight="10sp"
-                android:hint="Min"
+                android:padding="10sp"
                 android:textSize="15sp"
-                android:id="@+id/minPriceET"/>
-            <EditText
-                android:layout_width="100sp"
-                android:layout_height="match_parent"
+                android:text="0 $"
                 android:layout_marginRight="10sp"
-                android:hint="Max"
-                android:textSize="15sp"
-                android:id="@+id/maxPriceET"/>
+                android:id="@+id/totalPriceTV"
+                />
         </LinearLayout>
         <TextView
-            android:id="@+id/errorSearchTV"
+            android:id="@+id/errorReservationTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10sp"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="15sp"
             android:layout_marginLeft="10sp"
             />
         <Button
-            android:id="@+id/btnSubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search"
+            android:textSize="15sp"
+            android:text="RESERVE"
             android:layout_marginLeft="10sp"
-            android:onClick="Search"/>
-
+            android:onClick="Reserve"/>
     </LinearLayout>
+
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

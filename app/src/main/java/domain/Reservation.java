@@ -10,26 +10,23 @@ public class Reservation implements Serializable {
     private Date pickUpDate;
     private Date returnDate;
     private int price;
-    private String done;
 //    public static final long serialVersionUID =4L;
 
-    public Reservation(int reservationID, String username, int carID, Date pickUpDate, Date returnDate, int price, String done) {
+    public Reservation(int reservationID, String username, int carID, Date pickUpDate, Date returnDate, int price) {
         ReservationID = reservationID;
         this.username = username;
         this.carID = carID;
         this.pickUpDate = pickUpDate;
         this.returnDate = returnDate;
         this.price = price;
-        this.done = done;
     }
 
-    public Reservation(String username, int carID, Date pickUpDate, Date returnDate, int price, String done) {
+    public Reservation(String username, int carID, Date pickUpDate, Date returnDate, int price) {
         this.username = username;
         this.carID = carID;
         this.pickUpDate = pickUpDate;
         this.returnDate = returnDate;
         this.price = price;
-        this.done = done;
     }
 
     public Reservation() {

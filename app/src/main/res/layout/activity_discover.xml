@@ -18,8 +18,8 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"
         android:layout_below="@id/sign_out"
-        android:layout_marginTop="10sp"
-        android:layout_marginBottom="10sp">
+        android:layout_margin="10sp"
+        android:padding="10sp">
 
 
         <ListView

@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private String response;
+    static User user = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,20 +51,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        try {
-            socketForCommunication = new Socket(SERVER_IP,SERVER_PORT);
-            outputStream = socketForCommunication.getOutputStream();
-            inputStream = socketForCommunication.getInputStream();
-            streamToServer = new PrintStream(outputStream);
-            streamFromServer = new BufferedReader(new InputStreamReader(inputStream));
-            objectOutputStream = new ObjectOutputStream((socketForCommunication.getOutputStream()));
-            objectInputStream = new ObjectInputStream((socketForCommunication.getInputStream()));
-            System.out.println("Connected");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(policy);
+//        try {
+//            socketForCommunication = new Socket(SERVER_IP,SERVER_PORT);
+//            outputStream = socketForCommunication.getOutputStream();
+//            inputStream = socketForCommunication.getInputStream();
+//            streamToServer = new PrintStream(outputStream);
+//            streamFromServer = new BufferedReader(new InputStreamReader(inputStream));
+//            objectOutputStream = new ObjectOutputStream((socketForCommunication.getOutputStream()));
+//            objectInputStream = new ObjectInputStream((socketForCommunication.getInputStream()));
+//            System.out.println("Connected");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
@@ -72,33 +73,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OpenDiscoverPage(View view) {
-        startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
-        try {
-            String username = usernameEditText.getText().toString();
-            String password = passwordEditText.getText().toString();
-
-            User user = new User(username,password,null,null,null);
-            objectOutputStream.writeObject(user);
-
-            streamToServer.println("logIn");
-            System.out.println("PROSAO");
-            response = streamFromServer.readLine();
-            System.out.println(response );
-            if(response.equals("You have signed in")){
+//        try {
+//            String username = usernameEditText.getText().toString();
+//            String password = passwordEditText.getText().toString();
+//
+//            User u = new User(username,password,null,null,null);
+//            objectOutputStream.writeObject(user);
+//
+//            streamToServer.println("logIn");
+//            System.out.println("PROSAO");
+//            response = streamFromServer.readLine();
+//            System.out.println(response );
+//            if(response.equals("You have signed in")){
+//              user = u;
+               //TESTIRANJE: user = new User("username", "password", "firstname", "lastname","email");
                 startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
-
-            }
-            else {
-                TextView errorTextView = findViewById(R.id.errorTextView);
-                errorTextView.setText("Wrong username/password.");
-                usernameEditText.setText("");
-                passwordEditText.setText("");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("FATAL ERROR");
-        }
+//
+//            }
+//            else {
+//                TextView errorTextView = findViewById(R.id.errorTextView);
+//                errorTextView.setText("Wrong username/password.");
+//                usernameEditText.setText("");
+//                passwordEditText.setText("");
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.println("FATAL ERROR");
+//        }
 
     }
 

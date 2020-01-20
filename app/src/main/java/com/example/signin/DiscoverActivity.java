@@ -8,6 +8,8 @@ import android.content.res.TypedArray;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -61,25 +63,43 @@ public class DiscoverActivity extends ListActivity {
         Resources resources = context.getResources();
 
 
-        Car car;
-        ArrayList<Car> cars = new ArrayList<>();
-        MainActivity.streamToServer.println("advertisedCars");
-        try {
-            do{
-                car = (Car) MainActivity.objectInputStream.readObject();
-                cars.add(car);
-                System.out.println("Dodat car");
-            }while(car != null);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ArrayList<Car> cars = new ArrayList<Car>();
+        Car car1 = new Car(1,"b1","m1",1,"t1","tip1",111,"f1",4,null);
+        Car car2 = new Car(1,"b2","m2",2,"t2","tip2",222,"f2",5,null);
+        car1.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-fiat-grande-punto.jpg");
+        car2.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-peugeot-107.jpg");
+        cars.add(car1);
+        cars.add(car2);
+
+//        Car car;
+//        ArrayList<Car> cars = new ArrayList<>();
+//        MainActivity.streamToServer.println("advertisedCars");
+//        try {
+//            do{
+//                car = (Car) MainActivity.objectInputStream.readObject();
+//                cars.add(car);
+//                System.out.println("Dodat car");
+//            }while(car != null);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 
         CarsAdapter adapter = new CarsAdapter(this,cars);
-        ListView listView = findViewById(android.R.id.list);
+        final ListView listView = findViewById(android.R.id.list);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Car listItem = (Car)listView.getItemAtPosition(position);
+                Intent i = new Intent(DiscoverActivity.this, ReservationActivity.class);
+                i.putExtra("key",listItem);
+                startActivity(i);
+            }
+        });
 
         NavigationView sign_out = findViewById(R.id.sign_out);
         sign_out.setNavigationItemSelectedListener(sign_out_listener);
@@ -88,6 +108,7 @@ public class DiscoverActivity extends ListActivity {
         bottom_navigation.setOnNavigationItemSelectedListener(bottom_navigation_listener);
 
     }
+
 
     public NavigationView.OnNavigationItemSelectedListener sign_out_listener =
             new NavigationView.OnNavigationItemSelectedListener() {
@@ -117,5 +138,7 @@ public class DiscoverActivity extends ListActivity {
                     return true;
                 }
             };
+
+
 
 }
