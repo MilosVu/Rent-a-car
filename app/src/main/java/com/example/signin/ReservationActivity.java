@@ -189,10 +189,11 @@ public class ReservationActivity extends AppCompatActivity {
             try {
                 Reservation reservation = new Reservation(MainActivity.user.getUsername(), car.getCarID(), dateFrom, dateTo, totalPrice);
                 MainActivity.streamToServer.println("reserve");
+                MainActivity.streamFromServer.readLine();
                 MainActivity.objectOutputStream.writeObject(reservation);
                 String response = MainActivity.streamFromServer.readLine();
                 errorReservationTV.setText(response);
-                if (response.equals("Reservation accepted")) {
+                if (response.equals("Reserved!")) {
                     errorReservationTV.setTextColor(Color.GREEN);
                 }
             } catch (IOException e) {

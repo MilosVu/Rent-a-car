@@ -78,14 +78,14 @@ public class MainActivity extends AppCompatActivity {
             String password = passwordEditText.getText().toString();
 
             User u = new User(username,password,null,null,null);
-            objectOutputStream.writeObject(user);
+            objectOutputStream.writeObject(u);
 
             streamToServer.println("logIn");
             System.out.println("PROSAO");
             response = streamFromServer.readLine();
             System.out.println(response );
             if(response.equals("You have signed in")){
-              user = u;
+                 user = u;
                //TESTIRANJE: user = new User("username", "password", "firstname", "lastname","email");
                 startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
             }

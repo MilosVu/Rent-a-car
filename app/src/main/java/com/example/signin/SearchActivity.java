@@ -40,7 +40,8 @@ public class SearchActivity extends AppCompatActivity {
     private TextView dateToTV;
     private DatePickerDialog.OnDateSetListener dateFromSetListener;
     private DatePickerDialog.OnDateSetListener dateToSetListener;
-
+    public static boolean isSearch = false;
+    public static Search search = null;
 
     Spinner brandSpinner;
     Spinner typeSpinner;
@@ -58,6 +59,9 @@ public class SearchActivity extends AppCompatActivity {
         NavigationView sign_out = findViewById(R.id.sign_out);
         sign_out.setNavigationItemSelectedListener(sign_out_listener);
 
+        if (MainActivity.socketForCommunication.isClosed()) {
+            System.out.println("zatvoren");
+        }
         dateFromTV = findViewById(R.id.dateFromTV);
         dateToTV = findViewById(R.id.dateToTV);
         brandSpinner = findViewById(R.id.brandSpinner);
@@ -83,9 +87,10 @@ public class SearchActivity extends AppCompatActivity {
 
         types.add("SUV");
         types.add("Saloon");
-        types.add("Cabrio");
+        types.add("Cabriolet");
         types.add("Coupe");
         types.add("Minivan");
+        types.add("Estate");
         //       List<Car> cars = new ArrayList<>();
         //OVDE ZAHTEV ZA SVE AUTOMOBILE A NE SAMO ADVERTISED
 //        MainActivity.streamToServer.println("advertisedCars");
@@ -210,10 +215,7 @@ public class SearchActivity extends AppCompatActivity {
             System.out.println(dateFrom.toString());
             System.out.println(dateTo.toString());
             if (validDates(dateFrom,dateTo)) {
-                Search search = new Search(brand,type,dateFrom,dateTo,minPrice,maxPrice);
-                MainActivity.streamToServer.println("search");
-                MainActivity.objectOutputStream.writeObject(search);
-                //OTVORI NOVU STRANU S AUTOMOBILIMA - KAO I DISCOVER
+                search = new Search(brand,type,dateFrom,dateTo,minPrice,maxPrice);
                 String keyValue = "searchedCars";
                 Intent i = new Intent(SearchActivity.this, DiscoverActivity.class);
                 i.putExtra("key",keyValue);

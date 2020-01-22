@@ -10,7 +10,7 @@ public class Reservation implements Serializable {
     private Date pickUpDate;
     private Date returnDate;
     private int price;
-//    public static final long serialVersionUID =4L;
+    public static final long serialVersionUID =4L;
 
     public Reservation(int reservationID, String username, int carID, Date pickUpDate, Date returnDate, int price) {
         ReservationID = reservationID;

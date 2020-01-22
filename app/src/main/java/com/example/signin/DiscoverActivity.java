@@ -23,10 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.Car;
+import domain.Search;
 
 public class DiscoverActivity extends ListActivity {
 
     String keyValue;
+    public static boolean search = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,22 +38,27 @@ public class DiscoverActivity extends ListActivity {
         Car car;
         ArrayList<Car> cars = new ArrayList<>();
 
+
         //UCITAVAMO KLJUC
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             keyValue = extras.getString("key");
         }
 
-        //AKO NISMO POSLALI KLJUC DA ZELIMO SEARCHED CARS, POKAZUJU SE ADVERTISED
-        if (keyValue == null) {
+        if( keyValue!= null && keyValue.equals("searchedCars")){
+            MainActivity.streamToServer.println("search");
+
+            try {
+                System.out.println(MainActivity.streamFromServer.readLine());
+                MainActivity.objectOutputStream.writeObject(SearchActivity.search);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("searched cars");
+        }
+        else{
             System.out.println("advertised cars");
             MainActivity.streamToServer.println("advertisedCars");
-        }
-
-        //AKO SMO POSLALI KLJUC ZA SEARCHED CARS, ONI SE PRIKAZUJU
-        //U SUSTINI OVO SE BRISE
-        else if(keyValue != null && keyValue.equals("searchedCars")) {
-            System.out.println("searched cars");
         }
 
         //NE ZNAM OTKUD OVO
@@ -94,21 +101,24 @@ public class DiscoverActivity extends ListActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        if (cars.isEmpty()) {
+            System.out.println("prazna lista");
+        }
+        else {
+            CarsAdapter adapter = new CarsAdapter(this,cars);
+            final ListView listView = findViewById(android.R.id.list);
+            listView.setAdapter(adapter);
 
-
-        CarsAdapter adapter = new CarsAdapter(this,cars);
-        final ListView listView = findViewById(android.R.id.list);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Car listItem = (Car)listView.getItemAtPosition(position);
-                Intent i = new Intent(DiscoverActivity.this, ReservationActivity.class);
-                i.putExtra("key",listItem);
-                startActivity(i);
-            }
-        });
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Car listItem = (Car)listView.getItemAtPosition(position);
+                    Intent i = new Intent(DiscoverActivity.this, ReservationActivity.class);
+                    i.putExtra("key",listItem);
+                    startActivity(i);
+                }
+            });
+        }
 
         NavigationView sign_out = findViewById(R.id.sign_out);
         sign_out.setNavigationItemSelectedListener(sign_out_listener);
