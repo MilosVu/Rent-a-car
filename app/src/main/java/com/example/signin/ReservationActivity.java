@@ -20,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,6 +59,10 @@ public class ReservationActivity extends AppCompatActivity {
         dateToTV = findViewById(R.id.resDateToTV);
         totalPriceTV = findViewById(R.id.totalPriceTV);
         errorReservationTV = findViewById(R.id.errorReservationTV);
+        String todayString = parseDateToString(Calendar.getInstance().getTime());
+        dateFromTV.setText(todayString);
+        dateToTV.setText(todayString);
+
         try {
             setDateObjects();
         } catch (ParseException e) {
@@ -100,7 +105,7 @@ public class ReservationActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+                Log.d(TAG, "onDateSet: MM/dd/yyyy: " + month + "/" + day + "/" + year);
 
                 String date = month + "/" + day + "/" + year;
                 dateFromTV.setText(date);
@@ -130,7 +135,7 @@ public class ReservationActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+                Log.d(TAG, "onDateSet: MM/dd/yyyy: " + month + "/" + day + "/" + year);
 
                 String date = month + "/" + day + "/" + year;
                 dateToTV.setText(date);
@@ -141,6 +146,11 @@ public class ReservationActivity extends AppCompatActivity {
 
     }
 
+    private String parseDateToString(Date time) {
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        String dateString = dateFormat.format(time);
+        return dateString;
+    }
 
     private void setTotalPrice() {
         try {
@@ -165,7 +175,7 @@ public class ReservationActivity extends AppCompatActivity {
     }
 
     private Date parseStringToDate(String dateString) throws ParseException {
-        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("mm/dd/yyyy");
+        SimpleDateFormat simpleDateFormat= new SimpleDateFormat("MM/dd/yyyy");
         Date date = simpleDateFormat.parse(dateString);
         return date;
     }

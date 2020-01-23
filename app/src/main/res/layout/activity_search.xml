@@ -73,17 +73,16 @@
                 android:text="From"
                 android:textColor="@android:color/black"
                 android:textSize="15sp"
-                android:layout_marginRight="5sp"
+                android:layout_marginRight="2sp"
                 />
             <TextView
                 android:id="@+id/dateFromTV"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
-                android:text="1/1/2020"
                 android:textColor="@android:color/black"
                 android:textSize="15sp"
-                android:layout_marginRight="5sp"
+                android:layout_marginRight="2sp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -92,14 +91,13 @@
                 android:text="To"
                 android:textColor="@android:color/black"
                 android:textSize="15sp"
-                android:layout_marginRight="5sp"
+                android:layout_marginRight="2sp"
                 />
             <TextView
                 android:id="@+id/dateToTV"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
-                android:text="1/1/2020"
                 android:textColor="@android:color/black"
                 android:textSize="15sp"
                 />

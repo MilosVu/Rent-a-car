@@ -21,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,7 +41,6 @@ public class SearchActivity extends AppCompatActivity {
     private TextView dateToTV;
     private DatePickerDialog.OnDateSetListener dateFromSetListener;
     private DatePickerDialog.OnDateSetListener dateToSetListener;
-    public static boolean isSearch = false;
     public static Search search = null;
 
     Spinner brandSpinner;
@@ -70,6 +70,9 @@ public class SearchActivity extends AppCompatActivity {
         maxPriceET = findViewById(R.id.maxPriceET);
         errorSearchTV = findViewById(R.id.errorSearchTV);
 
+        String todayString = parseDateToString(Calendar.getInstance().getTime());
+        dateFromTV.setText(todayString);
+        dateToTV.setText(todayString);
         //UCITAVANJE U SPINNERE
         ArrayList<String> brands = new ArrayList<String>();
         ArrayList<String> types = new ArrayList<String>();
@@ -92,7 +95,7 @@ public class SearchActivity extends AppCompatActivity {
         types.add("Minivan");
         types.add("Estate");
         //       List<Car> cars = new ArrayList<>();
-        //OVDE ZAHTEV ZA SVE AUTOMOBILE A NE SAMO ADVERTISED
+        //KAKO BISMO UCITALI PODATKE OD SERVERA
 //        MainActivity.streamToServer.println("advertisedCars");
 //            try {
 //            do{
@@ -139,7 +142,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+                Log.d(TAG, "onDateSet: MM/dd/yyyy: " + month + "/" + day + "/" + year);
 
                 String date = month + "/" + day + "/" + year;
                 dateFromTV.setText(date);
@@ -168,7 +171,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+                Log.d(TAG, "onDateSet: MM/dd/yyyy: " + month + "/" + day + "/" + year);
 
                 String date = month + "/" + day + "/" + year;
                 dateToTV.setText(date);
@@ -176,6 +179,11 @@ public class SearchActivity extends AppCompatActivity {
         };
     }
 
+    private String parseDateToString(Date time) {
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        String dateString = dateFormat.format(time);
+        return dateString;
+    }
 
 
     public void Search(View view){

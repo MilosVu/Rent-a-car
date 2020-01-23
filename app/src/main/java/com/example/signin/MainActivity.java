@@ -86,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(response );
             if(response.equals("You have signed in")){
                  user = u;
-               //TESTIRANJE: user = new User("username", "password", "firstname", "lastname","email");
+               //TESTIRANJE:
+                //user = new User("username", "password", "firstname", "lastname","email");
                 startActivity(new Intent(MainActivity.this,DiscoverActivity.class));
             }
             else {

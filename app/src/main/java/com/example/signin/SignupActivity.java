@@ -67,8 +67,12 @@ public class SignupActivity extends AppCompatActivity {
         String firstName = firstNameEditText.getText().toString();
         String lastName = lastNameEditText.getText().toString();
 
-        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty() || firstName.isEmpty()  || lastName.isEmpty())
+        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || email.isEmpty() || firstName.isEmpty()  || lastName.isEmpty()) {
+            errorSignUpTextView.setText("Empty fields not allowed.");
+            errorSignUpTextView.setTextColor(Color.RED);
             return;
+        }
+
 
         if (passwordConfirmed(password,confirmPassword) && isValidEmail(email)) {
             User user = new User(username,password, firstName, lastName, email);
@@ -90,6 +94,9 @@ public class SignupActivity extends AppCompatActivity {
         if(response.equals("You have registered successfully")) {
             errorSignUpTextView.setTextColor(Color.GREEN);
             return true;
+        }
+        else {
+            errorSignUpTextView.setTextColor(Color.RED);
         }
         return false;
     }

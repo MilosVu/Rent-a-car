@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -66,8 +67,6 @@ public class DiscoverActivity extends ListActivity {
         Resources resources = context.getResources();
 
         //U SVAKOM SLUCAJU UCITAVAMO AUTOMOBILE U LISTU
-
-//        ArrayList<Car> cars = new ArrayList<Car>();
 //        Car car1 = new Car(1,"b1","m1",1,"t1","tip1",111,"f1",4,null);
 //        Car car2 = new Car(1,"b2","m2",2,"t2","tip2",222,"f2",5,null);
 //        car1.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-fiat-grande-punto.jpg");
@@ -75,21 +74,6 @@ public class DiscoverActivity extends ListActivity {
 //        cars.add(car1);
 //        cars.add(car2);
 
-//        Car car;
-//        ArrayList<Car> cars = new ArrayList<>();
-//        MainActivity.streamToServer.println("advertisedCars");
-//        try {
-//            do{
-//                car = (Car) MainActivity.objectInputStream.readObject();
-//                cars.add(car);
-//                System.out.println("Dodat car");
-//            }while(car != null);
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        MainActivity.streamToServer.println("advertisedCars");
         try {
             do{
                 car = (Car) MainActivity.objectInputStream.readObject();
@@ -102,7 +86,8 @@ public class DiscoverActivity extends ListActivity {
             e.printStackTrace();
         }
         if (cars.isEmpty()) {
-            System.out.println("prazna lista");
+            TextView errorDiscoverTV = findViewById(R.id.errorDiscoverTV);
+            errorDiscoverTV.setText("No such cars available.");
         }
         else {
             CarsAdapter adapter = new CarsAdapter(this,cars);
