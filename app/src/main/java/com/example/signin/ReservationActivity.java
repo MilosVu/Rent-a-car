@@ -206,6 +206,9 @@ public class ReservationActivity extends AppCompatActivity {
                 if (response.equals("Reserved!")) {
                     errorReservationTV.setTextColor(Color.GREEN);
                 }
+                else {
+                    errorReservationTV.setTextColor(Color.RED);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

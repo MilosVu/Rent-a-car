@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image_one_signup">
 
 
     <com.google.android.material.navigation.NavigationView
@@ -11,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/sign_out_layout"
+        app:itemTextColor="#FFFFFF"
+        android:background="@android:color/transparent"
         />
 
     <LinearLayout
@@ -26,34 +29,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10sp">
+            android:padding="5sp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
                 android:text="Brand"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
                 android:layout_marginRight="10sp"
                 />
             <Spinner
                 android:id="@+id/brandSpinner"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"  />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10sp">
+            android:padding="5sp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
                 android:text="Type"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
                 android:layout_marginRight="10sp"
                 />
             <Spinner
@@ -65,14 +68,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10sp">
+            android:padding="5sp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
                 android:text="From"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
                 android:layout_marginRight="2sp"
                 />
             <TextView
@@ -80,40 +83,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
                 android:layout_marginRight="2sp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="10sp"
-                android:text="To"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
-                android:layout_marginRight="2sp"
-                />
-            <TextView
-                android:id="@+id/dateToTV"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="10sp"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
                 />
         </LinearLayout>
-
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5sp">
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="10sp"
+            android:text="To"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            android:layout_marginRight="2sp"
+            />
+            <TextView
+            android:id="@+id/dateToTV"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="10sp"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10sp">
+            android:padding="5sp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
                 android:text="Price range"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
                 android:layout_marginRight="10sp"
                 />
             <EditText
@@ -121,23 +128,29 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="10sp"
                 android:hint="Min"
-                android:textSize="15sp"
-                android:id="@+id/minPriceET"/>
+                android:textSize="17sp"
+                android:id="@+id/minPriceET"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:backgroundTint="#FFFFFF"/>
             <EditText
                 android:layout_width="100sp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10sp"
                 android:hint="Max"
-                android:textSize="15sp"
-                android:id="@+id/maxPriceET"/>
+                android:textSize="17sp"
+                android:id="@+id/maxPriceET"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:backgroundTint="#FFFFFF"/>
         </LinearLayout>
         <TextView
             android:id="@+id/errorSearchTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10sp"
+            android:padding="5sp"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:layout_marginLeft="10sp"
             />
         <Button
@@ -146,7 +159,9 @@
             android:layout_height="wrap_content"
             android:text="Search"
             android:layout_marginLeft="10sp"
-            android:onClick="Search"/>
+            android:onClick="Search"
+            android:textSize="15sp"
+            android:background="#FFFFFF"/>
 
     </LinearLayout>
 

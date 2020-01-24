@@ -59,9 +59,6 @@ public class SearchActivity extends AppCompatActivity {
         NavigationView sign_out = findViewById(R.id.sign_out);
         sign_out.setNavigationItemSelectedListener(sign_out_listener);
 
-        if (MainActivity.socketForCommunication.isClosed()) {
-            System.out.println("zatvoren");
-        }
         dateFromTV = findViewById(R.id.dateFromTV);
         dateToTV = findViewById(R.id.dateToTV);
         brandSpinner = findViewById(R.id.brandSpinner);
@@ -118,7 +115,6 @@ public class SearchActivity extends AppCompatActivity {
 
         brandSpinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_item, brands));
         typeSpinner.setAdapter(new ArrayAdapter(this, android.R.layout.simple_spinner_item, types));
-
         //SPAKOVACEMO OVAJ KOD ZA DATUME JEDNOG DANA U KRACI
         dateFromTV.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -67,10 +67,8 @@ public class DiscoverActivity extends ListActivity {
         Resources resources = context.getResources();
 
         //U SVAKOM SLUCAJU UCITAVAMO AUTOMOBILE U LISTU
-//        Car car1 = new Car(1,"b1","m1",1,"t1","tip1",111,"f1",4,null);
+//        Car car1 = new Car(1,"b1","m1",1,"t1","tip1",111,"f1",4,"https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-fiat-grande-punto.jpg");
 //        Car car2 = new Car(1,"b2","m2",2,"t2","tip2",222,"f2",5,null);
-//        car1.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-fiat-grande-punto.jpg");
-//        car2.setImageURL("https://www.rentacaratos.com/assets/img/automobili/rent-car-beograd-peugeot-107.jpg");
 //        cars.add(car1);
 //        cars.add(car2);
 

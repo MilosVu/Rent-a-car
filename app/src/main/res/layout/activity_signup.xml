@@ -4,21 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity">
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/appCompatImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background_image_one_signup" />
-
+    tools:context=".SignupActivity"
+    android:background="@drawable/background_image_one_signup">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/go_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="@android:color/white"
+        android:background="@android:color/transparent"
+        app:itemTextColor="#FFFFFF"
         app:menu="@menu/go_back_layout" />
 
 
@@ -26,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@id/go_back">
+        android:layout_below="@id/go_back"
+       >
 
         <EditText
             android:id="@+id/firstNameEditText"
@@ -34,31 +29,33 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:backgroundTint="@android:color/transparent"
+            android:backgroundTint="#FFFFFF"
             android:hint="First name"
             android:inputType="text"
             android:padding="15dp"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
+
         <EditText
             android:id="@+id/lastNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:backgroundTint="@android:color/transparent"
+            android:backgroundTint="#FFFFFF"
             android:hint="Last name"
             android:inputType="text"
             android:padding="15dp"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
+
         <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:backgroundTint="@android:color/transparent"
+            android:backgroundTint="#FFFFFF"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="15dp"
@@ -71,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:backgroundTint="@android:color/transparent"
+            android:backgroundTint="#FFFFFF"
             android:hint="Username"
             android:inputType="text"
             android:padding="15dp"
@@ -85,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:backgroundTint="@android:color/transparent"
+            android:backgroundTint="#FFFFFF"
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="15dp"
@@ -98,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:backgroundTint="@android:color/transparent"
+            android:backgroundTint="#FFFFFF"
             android:hint="Confirm password"
             android:inputType="textPassword"
             android:padding="15dp"
@@ -124,6 +121,7 @@
                 android:onClick="Register"
                 android:src="@drawable/round_arrow_forward_24"
                 android:tint="@android:color/white"
+                app:backgroundTint="#4E525B"
                 app:elevation="0dp"
                 app:fabCustomSize="80dp"
                 tools:ignore="RelativeOverlap" />

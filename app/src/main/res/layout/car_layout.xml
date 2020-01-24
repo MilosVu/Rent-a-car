@@ -6,47 +6,57 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/carImageView"/>
+        android:id="@+id/carImageView"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="10sp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:id="@+id/brandTextView"/>
+        android:id="@+id/brandTextView"
+        android:textColor="@android:color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:id="@+id/modelTextView"/>
+        android:id="@+id/modelTextView"
+        android:textColor="@android:color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:id="@+id/yearTextView"/>
+        android:id="@+id/yearTextView"
+        android:textColor="@android:color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:id="@+id/transmissionTextView"/>
+        android:id="@+id/transmissionTextView"
+        android:textColor="@android:color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:id="@+id/typeTextView"/>
+        android:id="@+id/typeTextView"
+        android:textColor="@android:color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:id="@+id/priceTextView"/>
+        android:id="@+id/priceTextView"
+        android:textColor="@android:color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:id="@+id/fuelTextView"/>
+        android:id="@+id/fuelTextView"
+        android:textColor="@android:color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:id="@+id/seatsTextView"/>
+        android:id="@+id/seatsTextView"
+        android:textColor="@android:color/white"/>
 
 </LinearLayout>
 

@@ -54,6 +54,8 @@ public class CarsAdapter extends ArrayAdapter<Car> {
             e.printStackTrace();
         }
 
+      //  carImageView.setImageResource(R.drawable.s1);
+
         brandTextView.setText("BRAND: "+ car.getBrand());
         modelTextView.setText("MODEL: "+ car.getModel());
         yearTextView.setText("YEAR: "+car.getYear());

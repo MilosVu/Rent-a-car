@@ -3,14 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image_one_signup">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/sign_out"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/sign_out_layout"
-        />
+        app:itemTextColor="#FFFFFF"
+        android:background="@android:color/transparent"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -20,6 +22,7 @@
         android:layout_below="@id/sign_out"
         android:layout_margin="10sp"
         android:padding="10sp">
+
         <TextView
             android:id="@+id/errorDiscoverTV"
             android:layout_width="match_parent"
@@ -27,7 +30,7 @@
             android:layout_marginStart="30dp"
             android:padding="15dp"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <ListView
             android:id="@android:id/list"
@@ -42,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_navigation"
-        android:background="?android:attr/windowBackground"/>
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/bottom_navigation" />
 
 </RelativeLayout>

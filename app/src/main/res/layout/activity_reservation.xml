@@ -3,13 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image_one_signup">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/sign_out"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/sign_out_layout"
+        app:itemTextColor="#FFFFFF"
+        android:background="@android:color/transparent"
         />
 
     <LinearLayout
@@ -17,35 +20,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/sign_out"
+        android:layout_above="@+id/bottom_navigation"
         android:padding="10sp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginRight="5sp"
                 android:padding="10sp"
                 android:text="From"
-                android:textSize="15sp"
-                android:layout_marginRight="5sp"
-                />
+                android:textColor="#FFFFFF"
+                android:textSize="17sp" />
             <TextView
                 android:id="@+id/resDateFromTV"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
                 android:text="1/1/2020"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:layout_marginRight="5sp"
+                android:textColor="#FFFFFF"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
                 android:text="To"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:layout_marginRight="5sp"
+                android:textColor="#FFFFFF"
                 />
             <TextView
                 android:id="@+id/resDateToTV"
@@ -53,7 +60,8 @@
                 android:layout_height="match_parent"
                 android:padding="10sp"
                 android:text="1/1/2020"
-                android:textSize="15sp"
+                android:textSize="17sp"
+                android:textColor="#FFFFFF"
                 />
         </LinearLayout>
         <LinearLayout
@@ -64,17 +72,19 @@
                 android:layout_height="match_parent"
                 android:padding="10sp"
                 android:text="TOTAL PRICE: "
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:layout_marginRight="5sp"
+                android:textColor="#FFFFFF"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:padding="10sp"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:text="0 $"
                 android:layout_marginRight="10sp"
                 android:id="@+id/totalPriceTV"
+                android:textColor="#FFFFFF"
                 />
         </LinearLayout>
         <TextView
@@ -88,10 +98,11 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
             android:text="RESERVE"
             android:layout_marginLeft="10sp"
-            android:onClick="Reserve"/>
+            android:onClick="Reserve"
+            android:textSize="15sp"
+            android:background="#FFFFFF" />
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
